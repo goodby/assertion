@@ -88,4 +88,16 @@ class Assert
             throw new InvalidArgumentException(str_replace('%parent%', $parent, $message));
         }
     }
+
+    /**
+     * @param object $value
+     * @param string $message
+     * @throws InvalidArgumentException
+     */
+    public static function argumentIsObject($value, $message = null)
+    {
+        if (is_object($value) === false) {
+            throw new InvalidArgumentException($message);
+        }
+    }
 }
