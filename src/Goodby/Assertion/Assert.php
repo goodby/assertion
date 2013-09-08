@@ -100,4 +100,16 @@ class Assert
             throw new InvalidArgumentException($message);
         }
     }
+
+    /**
+     * @param bool $value
+     * @param string $message
+     * @throws InvalidArgumentException
+     */
+    public static function argumentBool($value, $message = null)
+    {
+        if (is_bool($value) === false) {
+            throw new InvalidArgumentException($message);
+        }
+    }
 }
