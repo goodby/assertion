@@ -112,4 +112,40 @@ class Assert
             throw new InvalidArgumentException($message);
         }
     }
+
+    /**
+     * @param callable|bool $callableOrBoolean
+     * @param string $message
+     * @throws InvalidArgumentException
+     */
+    public static function argumentThat($callableOrBoolean, $message = null)
+    {
+        if (is_callable($callableOrBoolean)) {
+            if ($callableOrBoolean() === false) {
+                throw new InvalidArgumentException($message);
+            }
+        } elseif (is_bool($callableOrBoolean)) {
+            if ($callableOrBoolean === false) {
+                throw new InvalidArgumentException($message);
+            }
+        }
+    }
+
+    /**
+     * @param callable|bool $callableOrBoolean
+     * @param string $message
+     * @throws InvalidArgumentException
+     */
+    public static function argumentNotThat($callableOrBoolean, $message = null)
+    {
+        if (is_callable($callableOrBoolean)) {
+            if ($callableOrBoolean() === true) {
+                throw new InvalidArgumentException($message);
+            }
+        } elseif (is_bool($callableOrBoolean)) {
+            if ($callableOrBoolean === true) {
+                throw new InvalidArgumentException($message);
+            }
+        }
+    }
 }
